@@ -1,50 +1,105 @@
-# React + TypeScript + Vite
+Here’s a GitHub README template for the Meal Prep App:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+# 🍽️ Meal Prep App
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Automate meal planning and grocery shopping with ease! The Meal Prep App helps users manage meal prep by generating grocery lists and calculating portion sizes, taking the hassle out of cooking and shopping.
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Grocery List Automation** 🛒: Generate a grocery list based on your meal plan with customizable items.
+- **Portion Control** 📏: Manage portions and adjust for single servings or family-sized meals.
+- **Customizable Recipes** 🥘: Add, edit, and save your favorite recipes.
+- **Vegetarian & Vegan Options** 🌱: Easily toggle for dietary preferences and specific meal plans.
+- **Meal Scheduling** 📆: Organize meals by day and save plans for future weeks.
 
-- Configure the top-level `parserOptions` property like this:
+## 📋 Project Goals
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Quick Turnaround** ⚡: Keep development focused for rapid updates.
+- **Low Maintenance** 🔧: Optimize for minimal ongoing management.
+- **Leverage Existing Systems** 🛠️: Utilize established design systems and components.
+- **Scalable Design** 📦: Build reusable components for future scalability.
+- **Build in Public** 📢: Share progress to encourage community feedback and support.
+- **Web-Based First** 🌐: Develop primarily as a web app for faster deployment.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 📸 Screenshots
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+_Include screenshots here once available!_
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 💻 Tech Stack
+
+- **Frontend**: React, Tailwind CSS, Shadcn Components
+- **State Management**: Context API
+- **Backend**: Appwrite
+- **Design**: Figma
+
+## 🚧 Setup & Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/naganevsachin/bento.git
+   cd bento
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and go to `http://localhost:5173` to see the app in action!
+
+## 📚 Usage
+
+1. **Plan Meals**: Add your favorite meals to the scheduler.
+2. **Generate Grocery List**: Automatically get a shopping list based on your meal plan.
+3. **Adjust Portions**: Customize portions for each meal.
+4. **Manage Preferences**: Toggle settings for dietary restrictions or specific ingredients.
+
+## 👥 Contributing
+
+Contributions are welcome! Follow these steps:
+
+1. Fork the project.
+2. Create your feature branch:
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. Open a pull request.
+
+## 🌐 Roadmap
+
+- [x] Grocery List Automation
+- [ ] Portion Control
+- [ ] Submit Recipe
+- [ ] Meal Scheduling
+- [ ] Dietary Preference Filters
+- [ ] Backend Integration
+
+## 🔗 Links
+
+- **Live Demo**: [URL if deployed]
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Happy meal prepping with our app! Let us know your feedback and ideas for future features. 🎉
