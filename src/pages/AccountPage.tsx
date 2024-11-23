@@ -5,6 +5,7 @@ import TermsCondition from "@/components/TermsCondition";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { useUser } from "@/lib/context/user";
 import {
   Coins,
   Croissant,
@@ -23,6 +24,7 @@ const AccountPage: FC = (): ReactElement => {
     useState(false);
   const openTermsConditionModal = () => setTermsConditionModalOpen(true);
   const closeTermsConditionModal = () => setTermsConditionModalOpen(false);
+  const user = useUser();
 
   return (
     <>
@@ -116,6 +118,7 @@ const AccountPage: FC = (): ReactElement => {
                 <Button
                   variant="outline"
                   className="flex gap-2 w-full justify-start py-4 border-none"
+                  onClick={user.logout}
                 >
                   <LogOut className="h-4 w-4 text-destructive" />
                   <Label className="text-sm font-medium text-destructive">

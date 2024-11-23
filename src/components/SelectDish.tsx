@@ -1,15 +1,16 @@
-import { FC, ReactElement, useState } from "react";
+import { FC, ReactElement, useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Meal from "@/assets/meal.png";
 import { Plus, Minus, Drumstick } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { database } from "@/lib/appwrite";
+import { Query } from "appwrite";
 
 interface Dish {
-  id: number;
+  $id: string;
   name: string;
   description: string;
   cookTime: string;
@@ -19,53 +20,33 @@ interface Dish {
   calories: number;
   fats: number;
   isVegetarian: boolean;
+  imageUrl: string;
 }
-
-const dishes: Dish[] = [
-  {
-    id: 1,
-    name: "Tandoori Chicken",
-    description: "A flavourful, marinated chicken dish...",
-    cookTime: "60 MINUTES",
-    category: "Indian",
-    protein: 35,
-    carbs: 15,
-    calories: 20,
-    fats: 5,
-    isVegetarian: false,
-  },
-  {
-    id: 2,
-    name: "Paneer Tikka",
-    description: "A popular vegetarian dish made with paneer...",
-    cookTime: "45 MINUTES",
-    category: "Indian",
-    protein: 20,
-    carbs: 10,
-    calories: 15,
-    fats: 7,
-    isVegetarian: true,
-  },
-  // Add more dishes as needed
-];
 
 const SelectDish: FC<{
   isSelectDishOpen: boolean;
   onSelectDishClose: () => void;
-}> = ({ isSelectDishOpen, onSelectDishClose }): ReactElement => {
+  selectedOptions: string[];
+}> = ({
+  isSelectDishOpen,
+  onSelectDishClose,
+  selectedOptions,
+}): ReactElement => {
+  console.log(selectedOptions);
   const navigate = useNavigate();
   const [onlyVegetarian, setOnlyVegetarian] = useState(false);
   const [selectedDishes, setSelectedDishes] = useState<{
-    [id: number]: number;
+    [id: string]: number;
   }>({});
+  const [dishes, setDishes] = useState<Dish[]>([]);
 
   const toggleVegetarian = () => setOnlyVegetarian(!onlyVegetarian);
 
-  const addToMealPrep = (id: number) => {
+  const addToMealPrep = (id: string) => {
     setSelectedDishes((prev) => ({ ...prev, [id]: 1 }));
   };
 
-  const removeFromMealPrep = (id: number) => {
+  const removeFromMealPrep = (id: string) => {
     setSelectedDishes((prev) => {
       const newSelected = { ...prev };
       delete newSelected[id];
@@ -73,11 +54,11 @@ const SelectDish: FC<{
     });
   };
 
-  const incrementQuantity = (id: number) => {
+  const incrementQuantity = (id: string) => {
     setSelectedDishes((prev) => ({ ...prev, [id]: prev[id] + 1 }));
   };
 
-  const decrementQuantity = (id: number) => {
+  const decrementQuantity = (id: string) => {
     setSelectedDishes((prev) => ({
       ...prev,
       [id]: prev[id] > 1 ? prev[id] - 1 : 1,
@@ -91,6 +72,35 @@ const SelectDish: FC<{
   const handleGenerateList = (_tab: string, path: string) => {
     navigate(path);
   };
+
+  useEffect(() => {
+    database
+      .listDocuments(
+        "6738339600159d9fe30e", // databaseId
+        "673834330017bb7e7928", // collectionId
+        [
+          Query.select([
+            "name",
+            "description",
+            "cookTime",
+            "category",
+            "protein",
+            "carbs",
+            "calories",
+            "fats",
+            "isVegetarian",
+            "imageUrl",
+            "$id",
+          ]),
+          Query.equal("category", selectedOptions),
+        ] // queries (optional)
+      )
+      .then((dishesData) => {
+        console.log(dishesData.documents);
+        const dish = dishesData.documents as unknown as Dish[];
+        setDishes(dish);
+      });
+  }, []);
 
   if (!isSelectDishOpen) {
     return <></>;
@@ -118,10 +128,10 @@ const SelectDish: FC<{
         </div>
         <div className="flex flex-col gap-4 pb-24">
           {filteredDishes.map((dish) => (
-            <Card key={dish.id}>
+            <Card key={dish["$id"]}>
               <div className="relative w-full">
                 <img
-                  src={Meal}
+                  src={dish.imageUrl}
                   className="h-[182px] w-full rounded-md bg-cover"
                   alt={dish.name}
                 />
@@ -140,7 +150,7 @@ const SelectDish: FC<{
                   <div className="flex gap-1 items-center">
                     <Drumstick className="h-4 w-4 text-primary" />
                     <p className="text-secondary-foreground text-sm font-semibold">
-                      {dish.cookTime}
+                      {dish.cookTime} MINUTES
                     </p>
                   </div>
                 </div>
@@ -182,11 +192,11 @@ const SelectDish: FC<{
                 <p className="text-muted-foreground text-xs">
                   *All nutritional information per 1 serving.
                 </p>
-                {!selectedDishes[dish.id] ? (
+                {!selectedDishes[dish["$id"]] ? (
                   <Button
                     variant="outline"
                     className="font-medium text-secondary-foreground"
-                    onClick={() => addToMealPrep(dish.id)}
+                    onClick={() => addToMealPrep(dish["$id"])}
                   >
                     Add to meal prep
                   </Button>
@@ -195,7 +205,7 @@ const SelectDish: FC<{
                     <Button
                       className="flex-1 border-destructive text-destructive font-medium"
                       variant="outline"
-                      onClick={() => removeFromMealPrep(dish.id)}
+                      onClick={() => removeFromMealPrep(dish["$id"])}
                     >
                       Remove
                     </Button>
@@ -203,7 +213,7 @@ const SelectDish: FC<{
                       <Button
                         className="p-3 border-border"
                         variant="outline"
-                        onClick={() => decrementQuantity(dish.id)}
+                        onClick={() => decrementQuantity(dish["$id"])}
                       >
                         <Minus
                           width={16}
@@ -212,12 +222,12 @@ const SelectDish: FC<{
                         />
                       </Button>
                       <p className="p-2 font-medium text-sm">
-                        {selectedDishes[dish.id]}
+                        {selectedDishes[dish["$id"]]}
                       </p>
                       <Button
                         className="p-3 border-border"
                         variant="outline"
-                        onClick={() => incrementQuantity(dish.id)}
+                        onClick={() => incrementQuantity(dish["$id"])}
                       >
                         <Plus
                           width={16}

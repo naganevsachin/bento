@@ -38,7 +38,9 @@ const DishCard: FC = (): ReactElement => {
         <Button
           variant="outline"
           className="font-medium text-secondary-foreground"
-          onClick={() => handlePageChange("recipe", `/recipe/adsadsadsa`)}
+          onClick={() =>
+            handlePageChange("recipe", `/recipe/673ad33f00276ea1bcbd`)
+          }
         >
           View Recipe
         </Button>

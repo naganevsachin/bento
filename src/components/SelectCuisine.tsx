@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 // Define options as an array of objects for labels and values
 const options = [
-  { label: "Indian ", value: "Indian " },
+  { label: "Indian", value: "Indian" },
   { label: "Japanese", value: "Japanese" },
   { label: "Thai", value: "Thai" },
   { label: "Mediterranean", value: "Mediterranean" },
@@ -25,14 +25,20 @@ const options = [
 const SelectCuisine: FC<{
   onSelectDishOpen: () => void;
   isSelectDishOpen: boolean;
-}> = ({ onSelectDishOpen, isSelectDishOpen }): ReactElement => {
+  setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedOptions: string[];
+}> = ({
+  onSelectDishOpen,
+  isSelectDishOpen,
+  setSelectedOptions,
+  selectedOptions,
+}): ReactElement => {
   const navigate = useNavigate();
   const handlePageChange = (_page: string, path: string) => {
     navigate(path);
   };
 
   const [numberOfMeals, setNumberOfMeals] = useState<string>("");
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   // Toggle option in the selectedOptions state
   const handleOptionChange = (value: string) => {
     setSelectedOptions((prev: string[]) =>

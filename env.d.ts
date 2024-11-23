@@ -1,7 +1,7 @@
 declare namespace NodeJS {
     interface ProcessEnv {
-        VITE_END_POINT: string;
-        VITE_PROJECT: string;
+        END_POINT: string;
+        PROJECT: string;
         // Add more environment variables as needed
     }
 }

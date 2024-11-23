@@ -1,6 +1,6 @@
 import { Client, Databases, Account } from "appwrite";
-const apiEndPoint: string = import.meta.env.VITE_END_POINT as string;
-const apiProject: string = import.meta.env.VITE_PROJECT as string;
+const apiEndPoint: string = import.meta.env.END_POINT as string;
+const apiProject: string = import.meta.env.PROJECT as string;
 
 
 const client: Client = new Client();
