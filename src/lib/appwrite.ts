@@ -13,3 +13,5 @@ export const collectionIdDishes: string = import.meta.env
   .VITE_COLLECTION_ID_DISH as string;
 export const collectionIdUserDish: string = import.meta.env
   .VITE_COLLECTION_ID_USER_DISH as string;
+export const collectionIdSubmitRecipe: string = import.meta.env
+  .VITE_COLLECTION_ID_SUBMIT_RECIPE as string;

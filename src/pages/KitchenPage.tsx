@@ -219,8 +219,8 @@ const KitchenPage: FC = (): ReactElement => {
                             Mark meal prep as complete?
                           </AlertDialogTitle>
                           <AlertDialogDescription className="text-left">
-                            Are you sure you want to delete the meal prep, this
-                            action cannot be undone.
+                            Are you sure you want to mark this meal completed,
+                            this action cannot be undone.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter className="flex flex-row items-baseline justify-end gap-2">
