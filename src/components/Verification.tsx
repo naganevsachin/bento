@@ -26,7 +26,6 @@ const Verification: FC = (): ReactElement => {
         setError("Please enter a valid 6-digit OTP.");
       } else {
         setError(null); // Clear error if valid
-        console.log("OTP is valid:", otpValue);
         user.loginWithOTP(user.userId, otpValue);
         // Continue with verification logic
       }

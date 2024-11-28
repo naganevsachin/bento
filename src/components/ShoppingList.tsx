@@ -5,15 +5,13 @@ import { Checkbox } from "./ui/checkbox";
 const ShoppingList: FC<{
   isShoppingListOpen: boolean;
   onShoppingListClose: () => void;
-}> = ({ isShoppingListOpen, onShoppingListClose }): ReactElement => {
+  shoppingList: string[];
+}> = ({
+  isShoppingListOpen,
+  onShoppingListClose,
+  shoppingList,
+}): ReactElement => {
   if (!isShoppingListOpen) return <></>;
-
-  const shoppingList = [
-    "800g chicken",
-    "1 spoon coriander leaves",
-    "Lemon juice",
-    "Turmeric powder",
-  ];
 
   return (
     <div className="px-5 bg-background relative mt-6">
@@ -22,7 +20,7 @@ const ShoppingList: FC<{
         <>
           {shoppingList.map((item, key) => {
             return (
-              <div className="flex gap-3 mt-6 items-center">
+              <div key={key} className="flex gap-3 mt-6 items-center">
                 <Checkbox
                   className="border-muted-foreground rounded h-6 w-6"
                   id={key.toString()}

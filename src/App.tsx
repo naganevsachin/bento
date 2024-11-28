@@ -10,11 +10,13 @@ import ViewRecipePage from "@/pages/ViewRecipePage";
 import AccountPage from "@/pages/AccountPage";
 import ScrollToTop from "@/lib/ScrollToTop";
 import PrivateRoute from "@/components/PrivateRoute";
+import ResponsiveLayout from "./components/ResponsiveLayout";
 
 function App() {
   return (
     <Router>
       <UserProvider>
+        <ResponsiveLayout />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<LoginPage />} />

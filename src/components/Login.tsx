@@ -26,8 +26,7 @@ const Login: FC = (): ReactElement => {
       } else if (!validateEmail(email)) {
         setError("Please enter a valid email address.");
       } else {
-        setError("OTP SENT"); // Clear error if validation passes
-        console.log("Email:", email);
+        setError(null); // Clear error if validation passes
         user.sendOTP(email);
       }
     } else {

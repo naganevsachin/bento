@@ -3,6 +3,7 @@ import Login from "@/components/Login";
 import Verification from "@/components/Verification";
 import { useUser } from "@/lib/context/user";
 import { useNavigate } from "react-router-dom";
+import Loader from "@/components/Loader";
 
 const LoginPage: FC = (): ReactElement => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const LoginPage: FC = (): ReactElement => {
   return (
     <>
       {isLoading ? (
-        <></>
+        <Loader />
       ) : (
         <div className="px-5 h-dvh flex  items-center flex-col relative justify-around overscroll-y-none">
           {user.userId ? <Verification /> : <Login />}

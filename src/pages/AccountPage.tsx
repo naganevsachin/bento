@@ -42,41 +42,7 @@ const AccountPage: FC = (): ReactElement => {
         <div className="relative mt-6">
           <div className="px-5 pb-24">
             <p className="text-3xl font-semibold">My account</p>
-            <Alert className="mt-6 flex gap-6 bg-secondary border-none">
-              <div className="mt-1">
-                <Croissant className="text-primary h-6 w-6" />
-              </div>
-              <div>
-                <AlertTitle className="text-lg font-semibold text-card-foreground">
-                  Have a new recipe in mind?
-                </AlertTitle>
-                <AlertDescription className="mt-1 text-secondary-foreground text-sm mb-2">
-                  Submit your recipe. They would be added to the list after
-                  review.
-                </AlertDescription>
-                <SubmitRecipe />
-              </div>
-            </Alert>
-            <Alert className="mt-4 flex gap-6 bg-secondary border-none">
-              <div className="mt-1">
-                <Coins className="text-primary h-6 w-6" />
-              </div>
-              <div>
-                <AlertTitle className="text-lg font-semibold text-card-foreground">
-                  Fuel our progress
-                </AlertTitle>
-                <AlertDescription className="mt-1 text-secondary-foreground text-sm mb-2">
-                  If you enjoyed using the app, consider making a donation to
-                  help us continue improving and offering more great features.
-                </AlertDescription>
-                <Button
-                  variant="link"
-                  className="text-primary font-medium text-sm underline px-0 py-[6px]"
-                >
-                  Buy me a coffee
-                </Button>
-              </div>
-            </Alert>
+
             <div className="mt-4 divide-y border rounded-md">
               <div>
                 <Button
@@ -127,6 +93,41 @@ const AccountPage: FC = (): ReactElement => {
                 </Button>
               </div>
             </div>
+            <Alert className="mt-6 flex gap-6 bg-secondary border-none">
+              <div className="mt-1">
+                <Croissant className="text-primary h-6 w-6" />
+              </div>
+              <div>
+                <AlertTitle className="text-lg font-semibold text-card-foreground">
+                  Have a new recipe in mind?
+                </AlertTitle>
+                <AlertDescription className="mt-1 text-secondary-foreground text-sm mb-2">
+                  Submit your recipe. They would be added to the list after
+                  review.
+                </AlertDescription>
+                <SubmitRecipe />
+              </div>
+            </Alert>
+            <Alert className="mt-4 flex gap-6 bg-secondary border-none">
+              <div className="mt-1">
+                <Coins className="text-primary h-6 w-6" />
+              </div>
+              <div>
+                <AlertTitle className="text-lg font-semibold text-card-foreground">
+                  Fuel our progress
+                </AlertTitle>
+                <AlertDescription className="mt-1 text-secondary-foreground text-sm mb-2">
+                  If you enjoyed using the app, consider making a donation to
+                  help us continue improving and offering more great features.
+                </AlertDescription>
+                <Button
+                  variant="link"
+                  className="text-primary font-medium text-sm underline px-0 py-[6px]"
+                >
+                  Buy me a coffee
+                </Button>
+              </div>
+            </Alert>
           </div>
           <Navigation />
         </div>
