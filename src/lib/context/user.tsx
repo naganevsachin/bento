@@ -70,7 +70,7 @@ export function UserProvider({ children }: UserProviderProps) {
       setIsAuthenticated(true);
 
       // Redirect to the home page
-      window.location.replace("/cook");
+      window.location.replace("/home");
     } catch (err) {
       console.error("Login with OTP failed:", err);
     }

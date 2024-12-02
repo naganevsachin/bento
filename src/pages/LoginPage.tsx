@@ -28,9 +28,9 @@ const LoginPage: FC = (): ReactElement => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="px-5 h-dvh flex  items-center flex-col relative justify-around overscroll-y-none">
+        <div className="px-5 h-dvh flex  items-center flex-col relative justify-around">
           {user.userId ? <Verification /> : <Login />}
-          <p className=" my-8 text-center text-xs font-normal text-muted-foreground w-4/5">
+          <p className=" absolute bottom-2 text-center text-xs font-normal text-muted-foreground w-4/5">
             By clicking continue, you agree to our terms of <br />
             service and Privacy policy
           </p>

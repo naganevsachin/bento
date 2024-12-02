@@ -52,7 +52,7 @@ const Login: FC = (): ReactElement => {
       >
         Sign In with Email
       </Button>
-      <div className="inline-flex items-center justify-center w-full my-4">
+      {/* <div className="inline-flex items-center justify-center w-full my-4">
         <hr className="w-full h-0.5 bg-slate-200 border-0" />
         <span className="absolute px-3 text-xs font-normal text-slate-500 -translate-x-1/2 bg-white left-1/2 ">
           OR CONTINUE WITH
@@ -64,7 +64,7 @@ const Login: FC = (): ReactElement => {
       >
         <img src={Google} width={16} height={16} alt="" />
         <p>Google</p>
-      </Button>
+      </Button> */}
     </div>
   );
 };
