@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { FC, ReactElement } from "react";
 import Bento from "@/assets/bento.png";
-import Google from "@/assets/google.png";
+// import Google from "@/assets/google.png";
 import {
   InputOTP,
   InputOTPGroup,
