@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FC, ReactElement, useRef, useState } from "react";
 import Bento from "@/assets/bento.png";
-import Google from "@/assets/google.png";
+// import Google from "@/assets/google.png";
 import { useUser } from "@/lib/context/user";
 
 const Login: FC = (): ReactElement => {
