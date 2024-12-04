@@ -5,13 +5,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { FC, ReactElement, useState } from "react";
+import { FC, ReactElement } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
 // Define options as an array of objects for labels and values
 const options = [
-  { label: "Indian ", value: "Indian " },
+  { label: "Indian", value: "Indian" },
   { label: "Japanese", value: "Japanese" },
   { label: "Thai", value: "Thai" },
   { label: "Mediterranean", value: "Mediterranean" },
@@ -25,14 +25,23 @@ const options = [
 const SelectCuisine: FC<{
   onSelectDishOpen: () => void;
   isSelectDishOpen: boolean;
-}> = ({ onSelectDishOpen, isSelectDishOpen }): ReactElement => {
+  setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>>;
+  setNumberOfMeals: React.Dispatch<React.SetStateAction<string>>;
+  selectedOptions: string[];
+  numberOfMeals: string;
+}> = ({
+  onSelectDishOpen,
+  isSelectDishOpen,
+  setSelectedOptions,
+  setNumberOfMeals,
+  selectedOptions,
+  numberOfMeals,
+}): ReactElement => {
   const navigate = useNavigate();
   const handlePageChange = (_page: string, path: string) => {
     navigate(path);
   };
 
-  const [numberOfMeals, setNumberOfMeals] = useState<string>("");
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   // Toggle option in the selectedOptions state
   const handleOptionChange = (value: string) => {
     setSelectedOptions((prev: string[]) =>
@@ -65,13 +74,15 @@ const SelectCuisine: FC<{
             />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="1">1</SelectItem>
-            <SelectItem value="2">2</SelectItem>
-            <SelectItem value="3">3</SelectItem>
+            <SelectItem value="4">4</SelectItem>
+            <SelectItem value="8">8</SelectItem>
+            <SelectItem value="12">12</SelectItem>
+            <SelectItem value="16">16</SelectItem>
+            <SelectItem value="20">20</SelectItem>
           </SelectContent>
         </Select>
         <p className="text-base font-semibold">Select cuisines</p>
-        <div className="flex flex-col gap-4 mt-4 scroll overflow-y-scroll mb-20">
+        <div className="flex flex-col gap-4 mt-4 mb-20">
           {options.map(({ label, value }) => (
             <Button
               key={value}

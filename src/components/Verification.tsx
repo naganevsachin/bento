@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { FC, ReactElement } from "react";
 import Bento from "@/assets/bento.png";
-import Google from "@/assets/google.png";
+// import Google from "@/assets/google.png";
 import {
   InputOTP,
   InputOTPGroup,
@@ -26,7 +26,6 @@ const Verification: FC = (): ReactElement => {
         setError("Please enter a valid 6-digit OTP.");
       } else {
         setError(null); // Clear error if valid
-        console.log("OTP is valid:", otpValue);
         user.loginWithOTP(user.userId, otpValue);
         // Continue with verification logic
       }
@@ -69,7 +68,7 @@ const Verification: FC = (): ReactElement => {
       >
         Resend OTP
       </Button>
-      <div className="inline-flex items-center justify-center w-full my-4">
+      {/* <div className="inline-flex items-center justify-center w-full my-4">
         <hr className="w-full h-0.5 bg-slate-200 border-0" />
         <span className="absolute px-3 text-xs font-normal text-slate-500 -translate-x-1/2 bg-white left-1/2 ">
           OR CONTINUE WITH
@@ -81,7 +80,7 @@ const Verification: FC = (): ReactElement => {
       >
         <img src={Google} width={16} height={16} alt="" />
         <p>Google</p>
-      </Button>
+      </Button> */}
     </div>
   );
 };
