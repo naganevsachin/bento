@@ -23,9 +23,6 @@ Automate meal planning and grocery shopping with ease! The Meal Prep App helps u
 - **Build in Public** 📢: Share progress to encourage community feedback and support.
 - **Web-Based First** 🌐: Develop primarily as a web app for faster deployment.
 
-## 📸 Screenshots
-
-_Include screenshots here once available!_
 
 ## 💻 Tech Stack
 
@@ -86,19 +83,10 @@ Contributions are welcome! Follow these steps:
 ## 🌐 Roadmap
 
 - [x] Grocery List Automation
-- [ ] Portion Control
-- [ ] Submit Recipe
-- [ ] Meal Scheduling
-- [ ] Dietary Preference Filters
-- [ ] Backend Integration
-
-## 🔗 Links
-
-- **Live Demo**: [URL if deployed]
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- [x] Portion Control
+- [x] Submit Recipe
+- [x] Dietary Preference Filters
+- [x] Backend Integration
 
 ---
 
