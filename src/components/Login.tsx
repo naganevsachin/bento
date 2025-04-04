@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FC, ReactElement, useRef, useState } from "react";
 import Bento from "@/assets/bento.png";
-import Google from "@/assets/google.png";
+// import Google from "@/assets/google.png";
 import { useUser } from "@/lib/context/user";
 
 const Login: FC = (): ReactElement => {
@@ -26,8 +26,7 @@ const Login: FC = (): ReactElement => {
       } else if (!validateEmail(email)) {
         setError("Please enter a valid email address.");
       } else {
-        setError("OTP SENT"); // Clear error if validation passes
-        console.log("Email:", email);
+        setError(null); // Clear error if validation passes
         user.sendOTP(email);
       }
     } else {
@@ -53,7 +52,7 @@ const Login: FC = (): ReactElement => {
       >
         Sign In with Email
       </Button>
-      <div className="inline-flex items-center justify-center w-full my-4">
+      {/* <div className="inline-flex items-center justify-center w-full my-4">
         <hr className="w-full h-0.5 bg-slate-200 border-0" />
         <span className="absolute px-3 text-xs font-normal text-slate-500 -translate-x-1/2 bg-white left-1/2 ">
           OR CONTINUE WITH
@@ -65,7 +64,7 @@ const Login: FC = (): ReactElement => {
       >
         <img src={Google} width={16} height={16} alt="" />
         <p>Google</p>
-      </Button>
+      </Button> */}
     </div>
   );
 };

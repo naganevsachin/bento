@@ -7,11 +7,13 @@ import {
   ReactNode,
 } from "react";
 import { account } from "../appwrite";
+import { useNavigate } from "react-router-dom";
 
 // Define the type for user context
 interface UserContextType {
   current: Models.User<{}> | null;
   userId: string;
+  isAuthenticated: boolean;
   sendOTP: (email: string) => Promise<void>;
   loginWithOTP: (userId: string, secret: string) => Promise<void>;
   logout: () => Promise<void>;
@@ -37,12 +39,18 @@ interface UserProviderProps {
 export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<Models.User<{}> | null>(null);
   const [userId, setUserId] = useState<string>("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const navigate = useNavigate();
+
+  const handlePageChange = (_page: string, path: string) => {
+    navigate(path);
+  };
 
   // Send OTP to user's email
   async function sendOTP(email: string): Promise<void> {
     try {
       const response = await account.createEmailToken(ID.unique(), email);
-      console.log("OTP sent to email", response);
       setUserId(response.userId);
     } catch (err) {
       alert(`FAILED: ${err}`);
@@ -58,10 +66,11 @@ export function UserProvider({ children }: UserProviderProps) {
       // After session is created, fetch user details
       const loggedInUser = await account.get();
       setUser(loggedInUser);
-      console.log(loggedInUser);
+      setUserId(loggedInUser.$id);
+      setIsAuthenticated(true);
 
       // Redirect to the home page
-      window.location.replace("/cook");
+      window.location.replace("/home");
     } catch (err) {
       console.error("Login with OTP failed:", err);
     }
@@ -72,6 +81,8 @@ export function UserProvider({ children }: UserProviderProps) {
     try {
       await account.deleteSession("current");
       setUser(null);
+      setUserId("");
+      setIsAuthenticated(false);
     } catch (err) {
       console.error("Logout failed:", err);
     }
@@ -81,10 +92,16 @@ export function UserProvider({ children }: UserProviderProps) {
   async function init() {
     try {
       const loggedIn = await account.get();
+      if (!loggedIn) {
+        handlePageChange("login_page", "/");
+      }
       setUser(loggedIn);
-      console.log("USER:", loggedIn);
+      setIsAuthenticated(true);
+      setUserId(loggedIn.$id);
     } catch (err) {
       setUser(null);
+    } finally {
+      setIsLoading(false); // Set loading to false when initialization is complete
     }
   }
 
@@ -94,9 +111,17 @@ export function UserProvider({ children }: UserProviderProps) {
 
   return (
     <UserContext.Provider
-      value={{ current: user, sendOTP, loginWithOTP, logout, userId }}
+      value={{
+        current: user,
+        sendOTP,
+        loginWithOTP,
+        logout,
+        userId,
+        isAuthenticated,
+      }}
     >
-      {children}
+      {!isLoading && children}{" "}
+      {/* Only render children when loading is complete */}
     </UserContext.Provider>
   );
 }
